@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'Rockit';
+    src: url('../fonts/rock_it/Rockit.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Music';
+    src: url('../fonts/music_for_empty_apartments/music.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'YoungHeart';
+    src: url('../fonts/young_heart/youngheart.ttf') format('truetype');
+}
+
+body {
+    /*background-image: url("../img/background.png");*/
+    /*background-size: cover;*/
+    background-color: #1E2029;
+    font-family: Music;
+    color: white;
+}
+
+.display-4 {
+    font-family: YoungHeart;
+    font-size: 3rem;
+}
+
+.display-4, #name {
+    color: #D6EAFF;
+    text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1), 0 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+    background-color: #15171d;
+    border: 1px solid black;
+}
+
+/*.row {*/
+    /*height: 75vh;*/
+/*}*/
+
+#map {
+    width: 100%;
+    height: 90%;
+}
+
+
+
+#map:focus, .esri-view-root:focus, .esri-view-surface:focus {
+    outline: none !important;
+}
+
+.card {
+    height: 500px;
+    background-color: #15171d;
+    border-color: black;
+}
+
+.card-body {
+    overflow-y: scroll;
+}
+
+.card img {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    object-fit: cover;
+    /*border: 1px solid black;*/
+}
+
+i {
+    font-size: 20px;
+}
+
+.esri-widget--button {
+    border-radius: 50%;
+    background-color: #D6EAFF;
+    color: #15171d;
+}
+
+.esri-widget--button:hover {
+    background-color: #c2e0ff;
+}
+
+.esri-component.esri-attribution.esri-widget {
+    display: none;
+}
+
+.esri-component.esri-zoom.esri-widget {
+    background-color: transparent;
+}
+
+.esri-expand__panel {
+    background-color: transparent;
+}
+
+.social i {
+    font-size: 20px;
+    color: gray;
+    -moz-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4),
+    0 8px 13px rgba(0, 0, 0, 0.1),
+    0 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+.social i:hover {
+    color: #D6EAFF;
+}
+
+
+::-webkit-scrollbar {
+    height: 4px;
+    width: 4px; }
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #D6EAFF;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); }
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #D6EAFF; }
+
