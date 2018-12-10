@@ -1,8 +1,4 @@
-@font-face {
-    font-family: 'Rockit';
-    src: url('../fonts/rock_it/Rockit.ttf') format('truetype');
-}
-
+/* Load Fonts */
 @font-face {
     font-family: 'Music';
     src: url('../fonts/music_for_empty_apartments/music.ttf') format('truetype');
@@ -12,65 +8,61 @@
     font-family: 'YoungHeart';
     src: url('../fonts/young_heart/youngheart.ttf') format('truetype');
 }
+/* ================================================================================================================== */
+
+
+/* General styles and title */
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
 
 body {
-    /*background-image: url("../img/background.png");*/
-    /*background-size: cover;*/
     background-color: #1E2029;
     font-family: Music;
     color: white;
 }
 
-.display-4 {
+h1.display-4 {
     font-family: YoungHeart;
     font-size: 3rem;
 }
 
-.display-4, #name {
+h1.display-4, #name, h6 {
     color: #D6EAFF;
     text-shadow: 0 4px 3px rgba(0, 0, 0, 0.4), 0 8px 13px rgba(0, 0, 0, 0.1), 0 18px 23px rgba(0, 0, 0, 0.1);
 }
 
-.map-container {
+.map-panel, .info-panel {
     background-color: #15171d;
     border: 1px solid black;
 }
 
-/*.row {*/
-    /*height: 75vh;*/
-/*}*/
+::-webkit-scrollbar {
+    height: 4px;
+    width: 4px; }
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #D6EAFF;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); }
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #D6EAFF; }
+/* ================================================================================================================== */
 
+/* Map styles */
 #map {
     width: 100%;
     height: 90%;
 }
 
-
-
 #map:focus, .esri-view-root:focus, .esri-view-surface:focus {
     outline: none !important;
-}
-
-.card {
-    height: 500px;
-    background-color: #15171d;
-    border-color: black;
-}
-
-.card-body {
-    overflow-y: scroll;
-}
-
-.card img {
-    width: 175px;
-    height: 175px;
-    border-radius: 50%;
-    object-fit: cover;
-    /*border: 1px solid black;*/
-}
-
-i {
-    font-size: 20px;
 }
 
 .esri-widget--button {
@@ -94,7 +86,25 @@ i {
 .esri-expand__panel {
     background-color: transparent;
 }
+/* ================================================================================================================== */
 
+
+/* Card styles */
+.info-panel {
+    overflow-y: scroll;
+}
+
+#thumbnail {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    object-fit: cover;
+    /*border: 1px solid black;*/
+}
+/* ================================================================================================================== */
+
+
+/* Social styles */
 .social i {
     font-size: 20px;
     color: gray;
@@ -110,20 +120,124 @@ i {
 .social i:hover {
     color: #D6EAFF;
 }
+/* ================================================================================================================== */
 
 
-::-webkit-scrollbar {
-    height: 4px;
-    width: 4px; }
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    -webkit-border-radius: 10px;
-    border-radius: 10px; }
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: #D6EAFF;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); }
-::-webkit-scrollbar-thumb:window-inactive {
-    background: #D6EAFF; }
+/* Music player */
+.album-cover {
+    width: 30px;
+    height: 30px;
+}
 
+
+.btn {
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.btn i {
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.btn-outline-light {
+    color: #D6EAFF;
+    border-color: #D6EAFF;
+}
+
+.btn-outline-light:hover {
+    color: #15171d;
+    background-color: #D6EAFF;
+    border-color: #D6EAFF;
+}
+
+.btn-outline-light:not(:disabled):not(.disabled).active, .btn-outline-light:not(:disabled):not(.disabled):active, .show>.btn-outline-light.dropdown-toggle {
+    color: #15171d;
+    background-color: #D6EAFF;
+    border-color: #D6EAFF;
+}
+
+
+/* ================================================================================================================== */
+
+
+/* Media queries */
+
+@media (max-width: 764px) {
+
+    .map-panel {
+        height: 55vh;
+    }
+
+    .display-4 {
+        font-size: 2rem !important;
+    }
+
+    #thumbnail {
+        max-width: 95%;
+        height: auto;
+    }
+
+    h4 {
+        font-size: 14pt;
+    }
+
+    .main-row {
+        height: 100% !important;
+    }
+
+    .info-panel {
+        height: 40vh;
+        overflow-y: scroll;
+    }
+
+
+    #map {
+        height: 85%;
+    }
+
+    .social i {
+        font-size: 14px;
+        margin: .25rem !important;
+    }
+
+    #song-name {
+        font-size: 10pt;
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .map-panel {
+        height: 50vh;
+    }
+
+    #map {
+        height: 80%;
+    }
+
+    .social i {
+        font-size: 10px;
+        margin: .1rem !important;
+    }
+}
+
+/* ================================================================================================================== */
+
+.btn-disabled {
+    pointer-events: none !important;
+    background-color: #e3eaf2;
+    color: gray;
+}
+
+.esri-component.esri-expand.esri-widget.esri-expand--auto {
+    background-color: transparent !important;
+}

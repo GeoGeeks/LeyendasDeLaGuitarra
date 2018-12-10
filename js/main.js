@@ -1,3 +1,19 @@
+var DataFrame = dfjs.DataFrame;
+var flag = 'paused';
+
+$(".control").on('click', function () {
+    if (flag === 'paused') {
+        $("audio")[0].play();
+        flag = 'playing';
+    }
+    else if (flag === 'playing') {
+        $("audio")[0].pause();
+        flag = 'paused';
+    }
+
+    $(".control-icon").toggleClass('fa-play fa-pause');
+});
+
 require([
     "esri/Map",
     "esri/views/MapView",
@@ -30,7 +46,7 @@ require([
 
     var buttonLeft = document.createElement('div');
     buttonLeft.innerHTML = '<i class="fas fa-chevron-left"></i>';
-    buttonLeft.className = 'esri-widget--button esri-widget esri-interactive btn-left';
+    buttonLeft.className = 'esri-widget--button esri-widget esri-interactive btn-left btn-disabled';
 
     var buttonRight = document.createElement('div');
     buttonRight.innerHTML = '<i class="fas fa-chevron-right"></i>';
@@ -50,16 +66,33 @@ require([
 
     const instructionsExpand = new Expand({
         expandIconClass: "esri-icon-question",
-        expandTooltip: "How to use this sample",
+        expandTooltip: "Información",
         view: view,
         content: info,
-        expanded: view.widthBreakpoint !== "xsmall"
+        // expanded: view.widthBreakpoint !== "xsmall"
     });
     view.ui.add(instructionsExpand, "top-right");
 
 
 
-    var rank = 0;
+    var rank = 1;
+
+    function disableButtons(rank) {
+
+        // disable left button at the beginning
+        if (rank === 1) {
+            $('.btn-left').addClass('btn-disabled');
+        } else {
+            $('.btn-left').removeClass('btn-disabled');
+        }
+
+        // disable right button at the end
+        if (rank === 63) {
+            $('.btn-right').addClass('btn-disabled');
+        } else {
+            $('.btn-right').removeClass('btn-disabled');
+        }
+    }
 
     function changeLocation(event) {
 
@@ -68,6 +101,9 @@ require([
         } else {
             rank--;
         }
+
+        // disable buttons if needed
+        disableButtons(rank);
 
         // Make query
         var query = new Query();
@@ -102,16 +138,29 @@ require([
                 $("#birth").html(birth);
                 $("#death").html(death);
                 $("#thumbnail").attr('src', imgUrl);
-
-
-
             });
+
+        DataFrame.fromCSV('../LeyendasDeLaGuitarra/songs_info.csv').then(function(df) {
+            var newDf = df.filter(row => row.get('rank') == rank);
+            newDf.map(row => {
+                $("audio source").attr("src", row.get('preview_url'));
+                console.log(row.get('preview_url'));
+                $("audio")[0].load();
+                $("audio")[0].play();
+                $(".album-cover").attr("src", row.get('artwork_url'));
+                $("#song-name").html(row.get('track'));
+            })
+        });
+
+
+        if (flag === 'paused') {
+            $(".control-icon").toggleClass('fa-play fa-pause');
+            flag = 'playing';
+        }
     }
 
 
     $(".btn-left").on('click', {direction: 'left'}, changeLocation);
     $(".btn-right").on('click', {direction: 'right'}, changeLocation);
-
-
 
 });
