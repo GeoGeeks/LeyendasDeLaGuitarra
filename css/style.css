@@ -92,6 +92,7 @@ h1.display-4, #name, h6 {
 /* Card styles */
 .info-panel {
     overflow-y: scroll;
+    height: 100%;
 }
 
 #thumbnail {
